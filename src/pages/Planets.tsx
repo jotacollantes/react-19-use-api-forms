@@ -1,33 +1,40 @@
-import { FC, useEffect, useState } from 'react';
-import { planetsApi } from '../api/planetsApi';
+import { FC, use, useState } from 'react';
+
 import { Planet } from '../interfaces/planet.interface';
 import { EditPlanetForm } from './ui/EditPlanetForm';
 import { PlanetList } from './ui/PlanetList';
+//import { PlanetList } from './ui/PlanetList';
+interface Props {
+  getPlanets: Promise<Planet[]>
+}
 
-const getPlanets = async () => {
-  const res = await planetsApi.get('/');
-  return res.data;
-};
 
-const Planets: FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [planets, setPlanets] = useState<Planet[]>([]);
+const Planets: FC<Props> = ({getPlanets}) => {
+  //! Para que funcione getPlanets hay que recibirla como Props
+  //! El tipo de dato de la propiedad tiene que ser Promise<Planet[]> y no () => Promise<Planet[]> porque el use() recibe como parametro un usable y no la funcion o la referencia.
+  const originalPlanets=use(getPlanets)
+  const [planets, setPlanets] = useState(originalPlanets)
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
+  // const [planets, setPlanets] = useState<Planet[]>([]);
 
-  useEffect(() => {
-    getPlanets()
-      .then((res) => {
-        setPlanets(res);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setIsLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getPlanets()
+  //     .then((res) => {
+  //       setPlanets(res);
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message);
+  //       setIsLoading(false);
+  //     });
+  // }, []);
 
-  const handleAddPlanet = (planet: Partial<Planet>) => {
-    console.log(planet);
+  const handleAddPlanet = async (planet: Planet) => {
+    //console.log(planet);
+    //const newPlanet= await createPlanetAction(planet)
+    //console.log("exito",newPlanet)
+    setPlanets([...planets,planet])
   };
 
   return (
@@ -37,15 +44,20 @@ const Planets: FC = () => {
       {/* Formulario para agregar un planeta */}
       <EditPlanetForm onAddPlanet={handleAddPlanet} />
 
-      {error && (
-        <p>
-          Error al cargar los planetas -{' '}
-          <small className="text-red-500">{error}</small>
-        </p>
-      )}
+      {
+      // error && (
+      //   <p>
+      //     Error al cargar los planetas -{' '}
+      //     <small className="text-red-500">{error}</small>
+      //   </p>
+      // )
+      }
 
       {/* Lista de planetas Grid*/}
-      {isLoading ? <p>Cargando...</p> : <PlanetList planets={planets} />}
+      {
+      //isLoading ? <p>Cargando...</p> : <PlanetList planets={planets} />
+      <PlanetList planets={planets} />
+      }
     </>
   );
 };

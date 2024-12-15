@@ -6,6 +6,7 @@ export const planetsApi = axios.create({
 
 //! Interceptor para simular una espera de 2 segundos
 planetsApi.interceptors.request.use((config) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(config);

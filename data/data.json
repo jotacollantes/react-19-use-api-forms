@@ -29,6 +29,48 @@
       "name": "Júpiter",
       "type": "Planeta",
       "distanceFromSun": "778.5 millones de km"
+    },
+    {
+      "id": "43fd",
+      "name": "Saturno",
+      "type": "Planeta",
+      "distanceFromSun": "10000"
+    },
+    {
+      "id": "ea13",
+      "name": "Saturno",
+      "type": "Planeta",
+      "distanceFromSun": "10000"
+    },
+    {
+      "id": "8cd9",
+      "name": "REINECEC",
+      "type": "fghfgh",
+      "distanceFromSun": "fghfgh"
+    },
+    {
+      "id": "f54e",
+      "name": "j2system",
+      "type": "estrella",
+      "distanceFromSun": "1000"
+    },
+    {
+      "id": "8be1",
+      "name": "Shalom",
+      "type": "Planeta",
+      "distanceFromSun": "1500"
+    },
+    {
+      "id": "264e",
+      "name": "Orion",
+      "type": "Planeta",
+      "distanceFromSun": "5600"
+    },
+    {
+      "id": "0f22",
+      "name": "Mandalorian",
+      "type": "Satelite",
+      "distanceFromSun": "18000"
     }
   ]
 }
